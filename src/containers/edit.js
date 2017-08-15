@@ -16,7 +16,6 @@ export default  class Edit extends Component {
         this.setState({
             uuid: this.state.uuid +1         
         });
-        console.log(this.state.uuid)
         let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
         let data = {
             type:type,

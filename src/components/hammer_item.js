@@ -67,7 +67,7 @@ export default class HammerItem extends Component {
     }
     handleRotate(i,e){
         e.preventDefault()
-        console.log('rotate')
+        //console.log('rotate')
         let tmp = this.state.aimgs;
         if (e.type == 'rotatestart') {
             tmp.initAngle = this.state.aimgs.angle || 0;
@@ -87,9 +87,9 @@ export default class HammerItem extends Component {
         // (获得物体的中心点坐标 a(x,y))
         tmp.orgin.x= tmp.l+tmp.last_x +this.refs[`id${i}`].offsetWidth/2;
         tmp.orgin.y= tmp.t+tmp.last_y +this.refs[`id${i}`].offsetHeight/2;
-        console.log('left ',tmp.l+tmp.last_x ,'width',this.refs[`id${i}`].offsetWidth, this.refs[`id${i}`].offsetWidth*tmp.scale/2)
+        /*console.log('left ',tmp.l+tmp.last_x ,'width',this.refs[`id${i}`].offsetWidth, this.refs[`id${i}`].offsetWidth*tmp.scale/2)
         console.log('top', tmp.t+tmp.last_y,'height',this.refs[`id${i}`].offsetHeight*tmp.scale/2)
-        console.log('原点坐标：',tmp.orgin.x, tmp.orgin.y)
+        console.log('原点坐标：',tmp.orgin.x, tmp.orgin.y)*/
         // (获得初始旋转时的 坐标c(x0,y0) )
         tmp.editRotate.x0=e.touches[0].pageX;
         tmp.editRotate.y0=e.touches[0].pageY;
