@@ -1,0 +1,31 @@
+@import '../assets/css/index.scss';
+.handle_img1 {
+    width: 50%;
+    position: absolute;
+    box-sizing: content-box;
+    box-shadow: 0px 0px 0px 1px #41af9d;
+}
+
+.ico_img {
+    opacity: .9;
+}
+.edit_fanzhuan {
+    position: absolute;
+    width: px(38);
+    top: px(-19);
+    left: px(-19);
+}
+
+.edit_close {
+    position: absolute;
+    width: px(38);
+    top: px(-19);
+    right: px(-19);
+}
+
+.edit_rotate {
+    position: absolute;
+    width: px(38);
+    bottom: px(-19);
+    right: px(-19);
+}

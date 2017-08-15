@@ -1,5 +1,5 @@
 # 技术栈
-    React15.5.4  React-hammer
+    React15.5.4  hammerjs
 
 # Installation 教程
     1 安装依赖包： npm i 
@@ -8,4 +8,5 @@
     4 npm run build(线上打包)
 
 # 说明
+
    

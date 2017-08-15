@@ -1,5 +1,5 @@
 import React,{ Component }  from 'react'
-import Hammer from 'react-hammerjs'
+import Hammer from './hammer.js'
 import './hammer_item.scss'
 export default class HammerItem extends Component {
     constructor(props) {
@@ -21,7 +21,6 @@ export default class HammerItem extends Component {
         }
     }
     subImg(i,e){
-        console.log('hammer item sub :' ,i)
         this.props.SubItem(i);
     } 
 
@@ -168,23 +167,12 @@ export default class HammerItem extends Component {
         this.refs[`id${i}`].style.transform = value;
 
         let val2 = 'scale('+1/this.state.aimgs.scale+')'
-        if(this.props.item.type=='txt'){
-            this.refs[`yd${i}`].style.transform = val2;
-        }else{
-            this.refs[`fz${i}`].style.transform = val2;
-        }
+        this.refs[`fz${i}`].style.transform = val2;
         this.refs[`cd${i}`].style.transform = val2;
         this.refs[`rd${i}`].style.transform = val2;
         //$(myElement).css('box-shadow','0px 0px 0px '+1/transform.scale+'px #41af9d')
     }
     
-    // 文本选择
-    handleChange(i,e){
-        this.setState({
-            value:e.target.value
-        })
-    }
-
     handleImgTools(i,e){
         e.preventDefault()
         if(!this.state.close){
@@ -206,22 +194,12 @@ export default class HammerItem extends Component {
         return (
             <Hammer onPan={this.handlePan.bind(this,i)} onPinch={this.handlePinch.bind(this,i)} onRotate={this.handleRotate.bind(this,i)} options={options} direction='DIRECTION_ALL' onClick={this.handleImgTools.bind(this,i)}>
                 <div ref={'id'+ i} id={'id'+ i} className="handle_img1" style={{position:'absolute',top:item.t+'px',left: item.l +'px',zIndex:100,boxShadow:item.imgtools?'0px 0px 0px 1px #41af9d':'none'}} onClick={this.handleImgTools.bind(this,i)}>
-                    <img src={require(`images/${item.type=='txt'?'txt':'ico'}${item.i}.png`)} className="ico_img" onTouchStart={()=>this.setState({nohammer:0})}/>
+                    <img src={require(`images/ico${item.i}.png`)} className="ico_img" onTouchStart={()=>this.setState({nohammer:0})}/>
                     <div ref="tools" style={{display:item.imgtools?'block':'none'}}>
-                    {
-                        item.type=='txt'?
-                        <img ref={'yd'+i} src={require("images/edit_yidong.png")} className="edit_yidong" onTouchStart={()=>this.setState({nohammer:0})}/>
-                        :
                         <img ref={'fz'+i} src={require("images/edit_fanzhuan.png")} className="edit_fanzhuan" onTouchStart={this.handleReversal.bind(this,i)}/>
-                    }
-                    <img ref={'cd'+i} src={require("images/edit_close.png")} className="edit_close" onClick={this.subImg.bind(this,i)} onTouchStart={()=>this.setState({nohammer:1,close:1})}/>
-                    <img ref={'rd'+i} src={require("images/edit_rotate.png")}  className="edit_rotate" onTouchStart={this.handleRotateStart.bind(this,i)} onTouchMove={this.handleRotateMove.bind(this,i)}  />
+                        <img ref={'cd'+i} src={require("images/edit_close.png")} className="edit_close" onClick={this.subImg.bind(this,i)} onTouchStart={()=>this.setState({nohammer:1,close:1})}/>
+                        <img ref={'rd'+i} src={require("images/edit_rotate.png")}  className="edit_rotate" onTouchStart={this.handleRotateStart.bind(this,i)} onTouchMove={this.handleRotateMove.bind(this,i)}  />
                     </div>
-                    {
-                        item.type=='txt'?
-                        <input type="text" ref={'input'+i} placeholder="文字输入" value={this.state.value} className={"input"+item.i} style={{color:this.props.tcolor}} onClick={()=>this.props.onSaveInput(i)} onChange={this.handleChange.bind(this,i)} onTouchStart={()=>this.setState({nohammer:1})}/>
-                        :null
-                    }
                 </div>
             </Hammer>
         )

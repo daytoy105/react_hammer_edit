@@ -1,6 +1,5 @@
 import React, { Component }  from 'react'
-import HammerItem from 'components/hammerItem/hammer_item.js'
-
+import HammerItem from 'components/hammer_item.js'
 import './edit.scss'
 
 export default  class Edit extends Component {
@@ -12,11 +11,6 @@ export default  class Edit extends Component {
             isblank:0,
         }
     }
-
-    componentDidMount() {
-
-    }
-
     // 添加图形
     addImg(i,type,e){
         this.setState({
@@ -85,20 +79,19 @@ export default  class Edit extends Component {
     }
    
     render() {
-        let imgs = [] , text=[];
-        for(let i=1; i<7;i++){
+        let imgs = []
+        for (let i = 1; i < 7; i++) {
             imgs.push(i)
         }
-        let _this = this;
-        let imgs_ele = this.state.aimgs.map((item,i)=>(    ///**key : 保证 dom 的唯一性  删除时避免数据渲染错乱 **/
-            <HammerItem key={item.sort} item = {item} i={i} imgtools={item.imgtools} SubItem={(subid)=>this.subImg(subid)} tcolor={item.tcolor} onSaveInput={(index)=>this.handleInput(index)}  onSaveImgTools={(id)=>this.showImgTools(id)}/>        
-        ))
-
         return (
             <div ref="edit_bg" className="edit_bg">
                 <h1>React-拖拽缩放</h1>
                 <div className="edit_container" ref="edit_container">
-                        {imgs_ele}
+                    {
+                        this.state.aimgs.map((item,i)=>(    ///**key : 保证 dom 的唯一性  删除时避免数据渲染错乱 **/
+                            <HammerItem key={item.sort} item = {item} i={i} imgtools={item.imgtools} SubItem={(subid)=>this.subImg(subid)} tcolor={item.tcolor} onSaveInput={(index)=>this.handleInput(index)}  onSaveImgTools={(id)=>this.showImgTools(id)}/>        
+                        ))
+                    }
                 </div>
                 <div className="blank" style={{display:this.state.isblank?'block':'none'}} onTouchStart={this.hideImgTools.bind(this)}></div>
                 <div className="tools_image">
